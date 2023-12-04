@@ -1,0 +1,22 @@
+{
+  "name": "wp_face_opencv",
+  "version": "1.0.1",
+  "main": "index.js",
+  "description": "wp_face_opencv.",
+  "author": {
+    "name": "wuyunpeng",
+    "email": "wuyunpeng37@163.com"
+  },
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "node-addon-api": "^1.0.0"
+  },
+  "keywords": [
+    "test",
+    "face"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "install": "cmake-js compile"
+  }
+}
