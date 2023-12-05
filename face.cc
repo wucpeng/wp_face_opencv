@@ -3,7 +3,7 @@
 #include "util.h"
 #include <time.h>
 #include "facedetectcnn.h"
-
+#include <unistd.h>
 using namespace std;
 using namespace cv;
 
@@ -15,6 +15,7 @@ const string xmlPath = "./xml/haarcascade_frontalface_alt2.xml";
 //define the buffer size. Do not change the size!
 //0x9000 = 1024 * (16 * 2 + 4), detect 1024 face at most
 #define DETECT_BUFFER_SIZE 0x9000
+#define MAX_PATH 256
 
 //图片混合
 bool MixImage(cv::Mat& srcImage, cv::Mat mixImage, cv::Point startPoint){
@@ -63,14 +64,21 @@ bool MixImage(cv::Mat& srcImage, cv::Mat mixImage, cv::Point startPoint){
 
 void drawFaceAndSave(std::vector<cv::Rect>& faces, cv::Mat& src, const std::string& str, const std::string& key, const std::string& output) {
 	string id = getImageUrlId(str);
-    cv::Mat flower; // = cv::imread(mixFlower.c_str()); // 0 bgr, 1 grey, -1 aplha
-	if (key == "flower") {
-		flower = cv::imread(mixFlower.c_str());
-	} else if (key == "head") {
-		flower = cv::imread(mixHead.c_str());
-	} else {
-		flower = cv::imread(mixRabbit.c_str());
-	}
+    //string path = getCurrentPath();
+	// char pBuf[MAX_PATH];                     //存放路径的变量
+	// GetCurrentDirectory(MAX_PATH, pBuf);      //获取程序的当前目录
+	// cout << pBuf << endl;
+	// char* current = get_current_dir_name();
+	// cout << "current: " << current << endl;
+
+	cv::Mat flower = cv::imread(key.c_str()); // 0 bgr, 1 grey, -1 aplha
+	// if (key == "flower") {
+	// 	flower = cv::imread(mixFlower.c_str());
+	// } else if (key == "head") {
+	// 	flower = cv::imread(mixHead.c_str());
+	// } else {
+	// 	flower = cv::imread(mixRabbit.c_str());
+	// }
 	// cv::Mat test12 = cv::imread("12.png", -1);
 	// imageBackgroundBlack(test12, "test12");
 	// test12.release();

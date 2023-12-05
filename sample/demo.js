@@ -26,7 +26,7 @@ const urls = [
 
 ]
 for(let o of urls) { //flower , "rabbit" head
-    let xx2 = nodes.cnnFaceDetectUrl(o, "head", __dirname);
+    let xx2 = nodes.cnnFaceDetectUrl(o, __dirname + "/../images/head.png", __dirname);
     console.log("cvFaceDetectUrl", xx2,  Date.now() - start);
     // let cv2 = nodes.cvFaceDetectUrl(o, "head", __dirname);
     // console.log("cvFaceDetectUrl", cv2,  Date.now() - start);

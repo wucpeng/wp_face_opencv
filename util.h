@@ -12,6 +12,7 @@ cv::Mat curlImg(const char *img_url, int timeout);
 
 std::vector<std::string> stringSplit(const std::string& str, char delim);
 std::string getImageUrlId(const std::string& str);
+std::string getCurrentPath();
 void imageBackgroundBlack(cv::Mat& src, const std::string key);
 
 #endif

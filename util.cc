@@ -1,6 +1,8 @@
 #include "util.h"
 #include <time.h>
 #include <vector>
+#include <string>
+#include <unistd.h>
 #include <curl/curl.h>
 #include <opencv2/opencv.hpp>
 using namespace std;
@@ -124,6 +126,12 @@ std::string getImageUrlId(const std::string& str) {
     return vecList[vecList.size() - 1];
 }
 
+std::string getCurrentPath() {
+    char buffer[256];
+    getcwd(buffer, 256);
+    cout << buffer << endl;
+    return string(buffer);
+}
 
 void imageBackgroundBlack(cv::Mat& src, const std::string key) {
     int Width = src.cols;
