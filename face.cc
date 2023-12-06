@@ -64,52 +64,7 @@ bool MixImage(cv::Mat& srcImage, cv::Mat mixImage, cv::Point startPoint){
 
 void drawFaceAndSave(std::vector<cv::Rect>& faces, cv::Mat& src, const std::string& str, const std::string& key, const std::string& output) {
 	string id = getImageUrlId(str);
-    //string path = getCurrentPath();
-	// char pBuf[MAX_PATH];                     //存放路径的变量
-	// GetCurrentDirectory(MAX_PATH, pBuf);      //获取程序的当前目录
-	// cout << pBuf << endl;
-	// char* current = get_current_dir_name();
-	// cout << "current: " << current << endl;
-
 	cv::Mat flower = cv::imread(key.c_str()); // 0 bgr, 1 grey, -1 aplha
-	// if (key == "flower") {
-	// 	flower = cv::imread(mixFlower.c_str());
-	// } else if (key == "head") {
-	// 	flower = cv::imread(mixHead.c_str());
-	// } else {
-	// 	flower = cv::imread(mixRabbit.c_str());
-	// }
-	// cv::Mat test12 = cv::imread("12.png", -1);
-	// imageBackgroundBlack(test12, "test12");
-	// test12.release();
-	// cv::Mat test13 = cv::imread("13.png", -1);
-	// imageBackgroundBlack(test13, "test13");
-	// test13.release();
-	// cout << key << ": " << endl;
-	// imwrite("test.png", flower);
-	// int depth = flower.depth();
-    // int channel = flower.channels();
-	// cout << "dims: " << flower.dims << endl;
-    // cout << "channels: " << channel << endl;
-    // cout << "depth: " << cv::depthToString(flower.depth()) << " , " << flower.depth() << endl;
-    // cout << "type: " << cv::typeToString(flower.type()) << " , value=" << flower.type() << endl; //alpha
-    // cout << "depth:" << depth << ", channel" << channel << endl;
-
-	// cv::Mat tmp;
-    // cv::cvtColor(flower, tmp, cv::COLOR_BGRA2BGR);
-	// imwrite( key + ".png", tmp);
-
-	// int Width = flower.cols;
-	// int Height = flower.rows;
-	// cout << "Height=" << Height << " , Width=" << Width << endl;
-	
-	// if (flower.type() != src.type()) {
-	// 	cv::Mat tmp;
-	// 	cv::cvtColor(src, tmp, cv::COLOR_BGR2BGRA);
-	// 	src.release();
-	// 	src = tmp;
-	// }
-
 	int Width = flower.cols;
 	int Height = flower.rows;
 	//cout << "Height=" << Height << " , Width=" << Width << endl;

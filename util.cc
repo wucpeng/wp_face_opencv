@@ -41,7 +41,6 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata)
     return count;
 }
 
-
 void modifyImageFormat(cv::Mat& out, cv::Mat& in, int channel, int depth) 
 {
     float factor = 1;
@@ -50,17 +49,15 @@ void modifyImageFormat(cv::Mat& out, cv::Mat& in, int channel, int depth)
     } else if (depth == 4) {
         factor = 1.0 / (255 * 255);
     }
-    if (channel == 4) {
+    if (channel == 4 && depth > 0) {
         cv::Mat tmp;
         cv::cvtColor(in, tmp, cv::COLOR_BGRA2BGR);
         tmp.convertTo(out, CV_8UC3, factor);
         tmp.release();
-    } else if (channel == 3) {
+    } else if (channel == 4) {
+        cv::cvtColor(in, out, cv::COLOR_BGRA2BGR);
+    } else if (depth > 0) {
         in.convertTo(out, CV_8UC3, factor);
-    } else if (channel == 2) {
-        in.convertTo(out, CV_8UC2, factor);
-    } else {
-        in.convertTo(out, CV_8U, factor);
     }
 }
 
@@ -90,23 +87,23 @@ cv::Mat curlImg(const char *img_url, int timeout)
     }
     //cout<<img_url<<" download: " << stream.size() << " " << stream.max_size()<<endl;
     cv::Mat src = imdecode(stream, -1); // 'keep-as-is'
+    //int Width = flower.cols;
     //int Height = src.rows;
+    //cout << "Width:" << Width << ",Height:"<<Height <<endl;
     int depth = src.depth();
     int channel = src.channels();
-    //cout << "Width:" << Width << ",Height:"<<Height <<endl;
     // cout << "dims: " << src.dims << endl;
     // cout << "channels: " << channel << endl;
     // cout << "depth: " << cv::depthToString(src.depth()) << " , " << src.depth() << endl;
     // cout << "type: " << cv::typeToString(src.type()) << " , value=" << src.type() << endl;
-    //cout << "depth:" << depth << ", channel" << channel << endl;
-    if (depth != 0) { //bit数仅支持8
+    // cout << "depth:" << depth << ", channel" << channel << endl;
+    if (depth != 0 || channel > 3) { //bit数仅支持8
         cv::Mat mid; //(src.cols, src.rows, CV_8UC3);
         modifyImageFormat(mid, src, channel, depth);
         src.release();
         return mid;
-    } else {
-        return src;
-    }
+    } 
+    return src;
 }
 
 std::vector<std::string> stringSplit(const std::string& str, char delim) {

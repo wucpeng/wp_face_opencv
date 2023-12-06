@@ -1,6 +1,6 @@
 {
   "name": "wp_face_opencv",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "description": "wp_face_opencv.",
   "author": {
